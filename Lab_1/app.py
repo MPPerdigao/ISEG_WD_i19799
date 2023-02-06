@@ -15,3 +15,14 @@ def form():
         name=request.form['name']
         return 'Hello'+ name
     return render_template ('form.html')
+
+from flask import render_template, request
+
+@app.route ('/form', methods=['GET', 'POST'])
+def form():
+    form = NameForm()
+    if request.method ==['POST']:
+        form.Validate_on_submit()
+    name =form.name.data
+    return 'Hello'+ name
+    return render_template ('form.html', form=form)
